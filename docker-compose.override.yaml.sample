@@ -18,7 +18,7 @@ services:
     image: adminer:4
     restart: always
     ports:
-      - 8080:8080
+      - 8181:8080
 
   redis:
     image: redis:5
@@ -30,6 +30,6 @@ services:
   app:
     image: nextcloud:16
     ports:
-      - 8081:80
+      - 8080:80
     volumes:
       - ./data/nextcloud:/var/www/html
