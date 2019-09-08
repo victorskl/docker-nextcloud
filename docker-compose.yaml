@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+
+  db:
+    image: mariadb
+    env_file:
+      - .env
+    restart: always
+
+  redis:
+    image: redis
+    restart: always
+
+  app:
+    image: nextcloud
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - redis
+    restart: always

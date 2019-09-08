@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+
+  db:
+    image: mariadb:10.4
+    command: >-
+      --transaction-isolation=READ-COMMITTED
+      --binlog-format=ROW
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+    ports:
+      - 3306:3306
+    volumes:
+      - ./data/mariadb:/var/lib/mysql
+
+  adminer:
+    image: adminer:4
+    restart: always
+    ports:
+      - 8080:8080
+
+  redis:
+    image: redis:5
+    ports:
+      - 6379:6379
+    volumes:
+      - ./data/redis:/data
+
+  app:
+    image: nextcloud:16
+    ports:
+      - 8081:80
+    volumes:
+      - ./data/nextcloud:/var/www/html
