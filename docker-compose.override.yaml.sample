@@ -14,22 +14,23 @@ services:
     volumes:
       - ./data/mariadb:/var/lib/mysql
 
-  adminer:
-    image: adminer:4
-    restart: always
-    ports:
-      - 8181:8080
-
-  redis:
-    image: redis:5
-    ports:
-      - 6379:6379
-    volumes:
-      - ./data/redis:/data
-
   app:
     image: nextcloud:16
     ports:
       - 8080:80
     volumes:
       - ./data/nextcloud:/var/www/html
+
+#  redis:
+#    image: redis:5
+#    restart: always
+#    ports:
+#      - 6379:6379
+#    volumes:
+#      - ./data/redis:/data
+
+#  adminer:
+#    image: adminer:4
+#    restart: always
+#    ports:
+#      - 8181:8080
