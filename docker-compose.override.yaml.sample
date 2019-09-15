@@ -18,8 +18,11 @@ services:
     image: nextcloud:16
     ports:
       - 8080:80
+    environment:
+      - NEXTCLOUD_DATA_DIR=/var/www/data
     volumes:
-      - ./data/nextcloud:/var/www/html
+      - ./data/nextcloud/app:/var/www/html
+      - ./data/nextcloud/data:/var/www/data
 
 #  redis:
 #    image: redis:5
